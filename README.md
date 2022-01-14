@@ -1,5 +1,7 @@
 # Heartbeat engineering exercise (frontend, react)
 
+> 🚨 Please create a private fork of this repository and make all PRs into your own repository
+
 ## Rules
 
 1. Try this exercise in **2 hours**. 🕙
@@ -44,6 +46,17 @@ loadPatients(sq).then(ps => onResults(ps)).catch(err => alert(err))
 ```
 
 We would like a nice "toast" component to show to the user when an error is encountered. There is a base component to use in the `src/toast/toast.tsx`. And in the `App.tsx` file, there is an example usage of this component commented out.
+
+## How to submit
+
+1. Create a private fork of this repository
+2. Create a new branch in your fork
+3. Commit on that branch
+4. When you are ready to submit, create a PR back to your fork
+5. Add the user @heartbeat-med (https://github.com/heartbeat-med)
+6. We will comment on the PR
+7. You can either submit more code or we can discuss in the next interview 🤘
+8. Any questions, reach out to us!
 
 ## License
 

@@ -1,12 +1,12 @@
 [
-    {
-        "name": "Steve Jobs",
-        "id": "AAA-0001",
-        "ehrID": "PATID184AB"
-    },
-    {
-        "name": "Judith Faulkner",
-        "id": "AAA-0002",
-        "ehrID": "EPIC012385"
-    }
+  {
+    "name": "Steve Jobs",
+    "id": "AAA-0001",
+    "ehrID": "PATID184AB"
+  },
+  {
+    "name": "Judith Faulkner",
+    "id": "AAA-0002",
+    "ehrID": "EPIC012385"
+  }
 ]

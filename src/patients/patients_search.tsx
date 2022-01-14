@@ -6,27 +6,33 @@ type props = {
   onResults: (ps: Patient[]) => void;
 };
 
-export const PatientsSearch: FunctionComponent<props> = ({ loadPatients, onResults }) => {
-    const [query, updateQuery] = useState("")
-    const makeRequest = () => {
-        const sq: PatientSearchQuery = {
-            name: query,
-            ehrID: query,
-            id: query,
-        }
-      loadPatients(sq).then(ps => onResults(ps)).catch(err => alert(err))
+export const PatientsSearch: FunctionComponent<props> = ({
+  loadPatients,
+  onResults,
+}) => {
+  const [query, updateQuery] = useState("");
+  const makeRequest = () => {
+    const sq: PatientSearchQuery = {
+      name: query,
+      ehrID: query,
+      id: query,
     };
-    return (
-      <div>
-       <input onChange={e => {
-           updateQuery(e.target.value)
-           makeRequest()
-       }} />
-      </div>
-    );
+    loadPatients(sq)
+      .then((ps) => onResults(ps))
+      .catch((err) => alert(err));
   };
+  return (
+    <div>
+      <input
+        onChange={(e) => {
+          updateQuery(e.target.value);
+          makeRequest();
+        }}
+      />
+    </div>
+  );
+};
 
-
-  type psearchboxprops = {
-    onQueryChange: (query: PatientSearchQuery) => void
-  }
+type psearchboxprops = {
+  onQueryChange: (query: PatientSearchQuery) => void;
+};

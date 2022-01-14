@@ -7,9 +7,11 @@ import { PatientsSearch } from "./patients/patients_search";
 import { ToastBox } from "./toast/toast";
 
 function App() {
-  const [patients, updatePatients] = useState<Patient[]>([])
+  const [patients, updatePatients] = useState<Patient[]>([]);
 
-  const [patientsApi] = useState<PatientsService>(createNewPatientsApi("http://localhost:3000"))
+  const [patientsApi] = useState<PatientsService>(
+    createNewPatientsApi("http://localhost:3000")
+  );
 
   return (
     <div className="App">
@@ -24,11 +26,21 @@ function App() {
           }}
         >
           <h2>Please load the patients using the button below or search</h2>
-          <PatientsLoader loadPatients={patientsApi.All} onLoaded={updatePatients} />
-          <PatientsSearch loadPatients={patientsApi.Search} onResults={updatePatients} />
+          <PatientsLoader
+            loadPatients={patientsApi.All}
+            onLoaded={updatePatients}
+          />
+          <PatientsSearch
+            loadPatients={patientsApi.Search}
+            onResults={updatePatients}
+          />
           {patients.length > 0 && displayPatients(patients)}
         </div>
-        <ToastBox title="An error occurred" message="There was an error loading your results" status="success" />
+        <ToastBox
+          title="An error occurred"
+          message="There was an error loading your results"
+          status="success"
+        />
       </header>
     </div>
   );

@@ -6,13 +6,18 @@ type props = {
   onLoaded: (ps: Patient[]) => void;
 };
 
-export const PatientsLoader: FunctionComponent<props> = ({ loadPatients, onLoaded }) => {
-    const makeRequest = () => {
-      loadPatients().then(ps => onLoaded(ps)).catch(err => alert(err))
-    };
-    return (
-      <div>
-        <button onClick={makeRequest}>Load all patients</button>
-      </div>
-    );
+export const PatientsLoader: FunctionComponent<props> = ({
+  loadPatients,
+  onLoaded,
+}) => {
+  const makeRequest = () => {
+    loadPatients()
+      .then((ps) => onLoaded(ps))
+      .catch((err) => alert(err));
   };
+  return (
+    <div>
+      <button onClick={makeRequest}>Load all patients</button>
+    </div>
+  );
+};
