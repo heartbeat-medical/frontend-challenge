@@ -1,12 +1,10 @@
-import { sleep } from "../utils/sleep";
-import {
-  isPatients,
-  PatientsService,
-  Patient,
-  PatientSearchQuery,
-} from "./patients";
+import { PatientService } from './../../models/PatientServiceModel';
+import { sleep } from "../../utils/sleep";
+import { Patient } from '../../models/PatientModel';
+import { isPatients } from './Patients';
+import { PatientSearchQuery } from '../../models/PatientSearchQueryModel';
 
-export function createNewPatientsApi(baseUrl: string): PatientsService {
+export function createNewPatientsApi(baseUrl: string): PatientService {
   return {
     All: () => {
       return new Promise<Patient[]>(async (resolve, reject) => {

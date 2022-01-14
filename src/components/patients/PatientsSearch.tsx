@@ -1,14 +1,17 @@
 import { FunctionComponent, useState } from "react";
-import { Patient, PatientSearchQuery } from "./patients";
+import { Patient } from "../../models/PatientModel";
+import { PatientSearchQuery } from "../../models/PatientSearchQueryModel";
 
 type props = {
   loadPatients: (query: PatientSearchQuery) => Promise<Patient[]>;
   onResults: (ps: Patient[]) => void;
+  setLoading: (isLoading: boolean) => void;
 };
 
 export const PatientsSearch: FunctionComponent<props> = ({
   loadPatients,
   onResults,
+  setLoading,
 }) => {
   const [query, updateQuery] = useState("");
   const makeRequest = () => {
@@ -17,9 +20,11 @@ export const PatientsSearch: FunctionComponent<props> = ({
       ehrID: query,
       id: query,
     };
+    setLoading(true);
     loadPatients(sq)
       .then((ps) => onResults(ps))
-      .catch((err) => alert(err));
+      .catch((err) => alert(err))
+      .finally(()=> setLoading(false));
   };
   return (
     <div>
@@ -31,8 +36,4 @@ export const PatientsSearch: FunctionComponent<props> = ({
       />
     </div>
   );
-};
-
-type psearchboxprops = {
-  onQueryChange: (query: PatientSearchQuery) => void;
 };
