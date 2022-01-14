@@ -1,0 +1,28 @@
+.toast {
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    border-radius: 4px;
+    padding: 16px; 
+    box-shadow: ;
+    position: fixed; 
+    z-index: 1; 
+    left: 50%; 
+    bottom: 30px; 
+    box-shadow: 7px 7px 2px 1px rgba(169, 169, 186, 0.825);
+  }
+  .toast.error {
+    background: rgb(255,78,41);
+    background: linear-gradient(137deg, rgba(255,78,41,1) 0%,rgba(207,25,25,1) 35%, rgba(255,0,187,1) 100%);
+  }
+  .toast.success {
+    background: rgb(41,156,29);
+    background: linear-gradient(137deg, rgba(41,156,29,1) 0%, rgba(78,162,122,1) 35%, rgba(0,255,190,1) 100%);
+  }
+
+  .toast h6 {
+      font-size: 1.2rem;
+      margin: 0;
+  }
