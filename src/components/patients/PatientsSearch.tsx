@@ -38,6 +38,7 @@ export const PatientsSearch: FunctionComponent<props> = ({
   return (
     <div>
       <input
+        placeholder="Search..."
         onChange={(e) => {
           updateQuery(e.target.value);
           makeRequest();
