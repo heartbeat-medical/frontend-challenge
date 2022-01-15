@@ -7,8 +7,8 @@ import { Patient } from "./models/PatientModel";
 import { PatientService } from "./models/PatientServiceModel";
 import { PatientsDetail } from "./components/patients/PatientsDetail";
 import { ToastBox } from "./components/toast/ToastBox";
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   const [patients, updatePatients] = useState<Patient[]>([]);
@@ -18,6 +18,8 @@ function App() {
   );
 
   const [isLoading, setLoading] = useState(false);
+
+  const [toast, setToast] = useState({});
 
   return (
     <>
@@ -32,20 +34,18 @@ function App() {
             onLoaded={updatePatients}
             setLoading={setLoading}
             disabled={isLoading}
+            setToast={setToast}
           />
           <PatientsSearch
             loadPatients={patientsApi.Search}
             onResults={updatePatients}
             setLoading={setLoading}
+            setToast={setToast}
           />
         </div>
         { isLoading && <SearchSpinner /> }
         { patients.length > 0 && <PatientsDetail patients={patients} /> }
-        <ToastBox
-          title="An error occurred"
-          message="There was an error loading your results"
-          status="success"
-        />
+        <ToastBox toast={toast} />
       </div>
     </>
   );

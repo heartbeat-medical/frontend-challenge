@@ -1,27 +1,28 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Toast, ToastContainer } from "react-bootstrap";
+import { IToast } from "../../models/ToastModel";
 import "./ToastBox.css";
 
 type props = {
-  title: string;
-  message?: string;
-  status: "success" | "error";
-};
+  toast: IToast;
+}
 
 export const ToastBox: FunctionComponent<props> = ({
-  title,
-  message,
-  status,
+  toast
 }) => {
+  const [show, setShow] = useState(toast.message !== undefined);
+  
+  useEffect(() => setShow(toast.message !== undefined), [toast]);
+
   return (
    <>
    <ToastContainer position="bottom-center" className="p-3">
-      <Toast className="d-inline-block m-1" bg={status} delay={1000} autohide>
+      <Toast className="d-inline-block m-1" onClose={() => setShow(false)} bg={toast.status} show={show} delay={3000} autohide>
         <Toast.Header closeButton={false}>
-          <strong className="me-auto">{title}</strong>
+          <strong className="me-auto">{toast.title}</strong>
         </Toast.Header>
         <Toast.Body className="text-white">
-          {message}
+          {toast.message}
         </Toast.Body>
       </Toast>
     </ToastContainer>
