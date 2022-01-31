@@ -2,15 +2,37 @@
 
 exports[`Patient Search test case matches snapshot 1`] = `
 <DocumentFragment>
-  <div>
-    <label
-      for="search-user"
+  <div
+    class="site-content"
+  >
+    <div
+      class="site-heading"
     >
-      <input
-        name="search-user"
-        placeholder="Search by name, emp ID"
-      />
-    </label>
+      <h1>
+        Welcome to Heartbeat 🏥
+      </h1>
+      <h3>
+        Please load the patients using the button below or search
+      </h3>
+    </div>
+    <div
+      class="site-box"
+    >
+      <div
+        class="site-input-box"
+      >
+        <form>
+          <label
+            for="search-user"
+          >
+            <input
+              name="search-user"
+              placeholder="Search by name, emp ID"
+            />
+          </label>
+        </form>
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;

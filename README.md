@@ -89,7 +89,10 @@ and while adding the loader learned a new thing about animation...
 
 ```bash
 animation-timing-function: ease, cubic-bezier(0.215, 0.61, 0.355, 1), step-start, cubic-bezier(0.215, 0.61, 0.355, 1);
+
+That we can pass multiple time functions or durations to the animation to have a random or variable effect....more values....more randomness....
 ```
+
 copied the color from [Heatbeat homepage](https://heartbeat-med.com/#kfjt7ps3uyilekearf959) of the button causes it matches red, used [Color Picker](https://chrome.google.com/webstore/detail/colorpick-eyedropper/ohcpnigalekghcmgcdcenkpelffpdolg).
 
 10. Also increased the timeout to the API calls to make the Loader show for longer.
@@ -97,3 +100,22 @@ copied the color from [Heatbeat homepage](https://heartbeat-med.com/#kfjt7ps3uyi
 12. Added new toasts for errors, reason to use ```react-toastify``` is, its highly customizable, and the challenge mentioned the word toast, which led me to this library.Also, the prop items which were already there were sufficient enough to handle our major use case....
 Added 2 new params to the toast component, we don't need those values, just adding to show the more directly configurable option based on the status prop value we r getting.
 Added a custom key called ```customId``` to the toast component to render it only once.
+13. Adding the change test case was a bit of a problem, as I was getting an error on ```.then is undefined``` on the load method, but figured it out now, that it was because I forgot to set the mocks on every test render, but after that it worked.
+
+14. Moved the Toast component inside the patient components, so that we can render the error in catch instead for the patient result array.
+
+15. Now with some time left in 2 hours, I am adding another rendering based on ```USEEFFECT``` for the patient search component.
+
+16. I am thinking of adding some css changes to beautify our page or component.
+
+17. Copied the header design, logo, footer design and the component from the hearbeat homepage, with all the colors of the button or background also copied from heartbeat homepage. The footer design is just a placeholder for improved UX.
+
+18. Created the avatar in the right, to show the current user(or who is doing the activity).
+
+19. As prettier was already here I added the script to format the tsx files.
+
+20. TO RUN THE USEEFFECT PATIENT SEARCH COMPONENT, we can replace the import.
+
+![Screenshot](https://github.com/apoorv173/frtonend/blob/frontend-activity-apoorv/screenshot.png?raw=true)
+
+### Start: 17:30

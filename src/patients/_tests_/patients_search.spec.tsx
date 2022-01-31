@@ -8,16 +8,21 @@ describe("Patient Search test case", () => {
     loadPatientMock = jest.fn().mockImplementation(() => Promise.resolve());
     onResultsMock = jest.fn();
   });
-  afterEach(() => {
-    cleanup();
-  });
   it("matches snapshot", () => {
-    const { asFragment } = render(<PatientsSearch loadPatients={loadPatientMock} onResults={onResultsMock} />);
+    const { asFragment } = render(
+      <PatientsSearch
+        loadPatients={loadPatientMock}
+        onResults={onResultsMock}
+      />
+    );
     expect(asFragment()).toMatchSnapshot();
   });
   it("on input search for user", async () => {
     const { getByPlaceholderText } = render(
-      <PatientsSearch loadPatients={loadPatientMock} onResults={onResultsMock} />
+      <PatientsSearch
+        loadPatients={loadPatientMock}
+        onResults={onResultsMock}
+      />
     );
     const inp = getByPlaceholderText("Search by name, emp ID");
     fireEvent.change(inp, {
@@ -25,6 +30,12 @@ describe("Patient Search test case", () => {
     });
     await waitFor(() => expect(inp).toHaveValue("Steve"));
     await waitFor(() => expect(loadPatientMock).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(loadPatientMock).toHaveBeenCalledWith({"ehrID": "Steve", "id": "Steve", "name": "Steve"}));
+    await waitFor(() =>
+      expect(loadPatientMock).toHaveBeenCalledWith({
+        ehrID: "Steve",
+        id: "Steve",
+        name: "Steve",
+      })
+    );
   });
 });
