@@ -83,13 +83,17 @@ See [LICENSE](LICENSE) file.
 Or I can add useEffect to the component, DEPENDS ON THE REQUIREMENTS
 8. Now I am trying to add a loader, I didn't go with a custom loader or from a library, as I think CSS can generally take care of the most general loaders, and for those special cases we can use a gif or else depends on the use case....
 9. Copied the CSS for the loader for the ```heart design```, and scaled it to double to make it more prominent on the screen.
+
 ✅ I wanted to add something cool which matches heartbeat so found a heart loader out....
 and while adding the loader learned a new thing about animation...
 
 ```bash
 animation-timing-function: ease, cubic-bezier(0.215, 0.61, 0.355, 1), step-start, cubic-bezier(0.215, 0.61, 0.355, 1);
 ```
+copied the color from [Heatbeat homepage](https://heartbeat-med.com/#kfjt7ps3uyilekearf959) of the button causes it matches red, used [Color Picker](https://chrome.google.com/webstore/detail/colorpick-eyedropper/ohcpnigalekghcmgcdcenkpelffpdolg).
+
 10. Also increased the timeout to the API calls to make the Loader show for longer.
 11. Changed the export to default for all components.
 12. Added new toasts for errors, reason to use ```react-toastify``` is, its highly customizable, and the challenge mentioned the word toast, which led me to this library.Also, the prop items which were already there were sufficient enough to handle our major use case....
 Added 2 new params to the toast component, we don't need those values, just adding to show the more directly configurable option based on the status prop value we r getting.
+Added a custom key called ```customId``` to the toast component to render it only once.

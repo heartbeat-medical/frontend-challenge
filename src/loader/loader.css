@@ -12,6 +12,8 @@
 .loader-heart {
   display: inline-block;
   position: fixed;
+  top: 40%;
+  left: 45%;
   width: 160px;
   height: 160px;
   transform: rotate(45deg);
