@@ -70,5 +70,11 @@ See [LICENSE](LICENSE) file.
 ### I am taking notes down for all my changes
 #
 
-Timeboxing the activity to 2 hours
-Start: 15:30
+### Timeboxing the activity to 2 hours
+### Start: 15:30
+
+1. I first checked everything in the code out, to understand what needs to be done.
+2. Then added ```@testing-library``` with the reference setup file to run the tests. 
+3. I saw that there was no label attached to the input, so first added a label and htmlFor to make it semantically correct.
+4. Then added a test case which just adds a snapshot for the patient search component.
+5. 
