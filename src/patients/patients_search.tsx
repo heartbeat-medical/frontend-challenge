@@ -1,5 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { Patient, PatientSearchQuery } from "./patients";
+import Loader from "../loader/loader";
 
 type props = {
   loadPatients: (query: PatientSearchQuery) => Promise<Patient[]>;
@@ -10,16 +11,23 @@ export const PatientsSearch: FunctionComponent<props> = ({
   loadPatients,
   onResults,
 }) => {
-  const [query, updateQuery] = useState("");
-  const makeRequest = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const makeRequest = (inputValue: string) => {
+    setIsLoading(true);
     const sq: PatientSearchQuery = {
-      name: query,
-      ehrID: query,
-      id: query,
+      name: inputValue,
+      ehrID: inputValue,
+      id: inputValue,
     };
     loadPatients(sq)
-      .then((ps) => onResults(ps))
-      .catch((err) => alert(err));
+      .then((ps) => {
+        setIsLoading(false);
+        onResults(ps);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+      });
   };
   return (
     <div>
@@ -27,16 +35,10 @@ export const PatientsSearch: FunctionComponent<props> = ({
         <input
           name="search-user"
           placeholder="Search by name, emp ID"
-          onChange={(e) => {
-            updateQuery(e.target.value);
-            makeRequest();
-          }}
+          onChange={(e) => makeRequest(e.target.value)}
         />
       </label>
+      <Loader isLoading={isLoading} />
     </div>
   );
-};
-
-type psearchboxprops = {
-  onQueryChange: (query: PatientSearchQuery) => void;
 };

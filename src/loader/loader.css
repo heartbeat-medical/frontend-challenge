@@ -1,0 +1,66 @@
+    
+.backdrop {
+  position: fixed;
+  visibility: visible;
+  opacity: 1;
+  z-index: 100;
+  inset: 0px;
+  transition-property: visibility, opacity;
+  transition-duration: 300ms;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.loader-heart {
+  display: inline-block;
+  position: fixed;
+  width: 160px;
+  height: 160px;
+  transform: rotate(45deg);
+  transform-origin: 40px 40px;
+}
+.loader-heart div {
+  top: 64px;
+  left: 64px;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background: #FF396F;
+  animation: loader-heart 1.2s infinite;
+  animation-timing-function: ease, cubic-bezier(0.215, 0.61, 0.355, 1), step-start, cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.loader-heart div:after,
+.loader-heart div:before {
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 64px;
+  height: 64px;
+  background: #FF396F;
+}
+.loader-heart div:before {
+  left: -48px;
+  border-radius: 50% 0 0 50%;
+}
+.loader-heart div:after {
+  top: -48px;
+  border-radius: 50% 50% 0 0;
+}
+@keyframes loader-heart {
+  0% {
+    transform: scale(0.95);
+  }
+  5% {
+    transform: scale(1.1);
+  }
+  39% {
+    transform: scale(0.85);
+  }
+  45% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
