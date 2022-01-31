@@ -23,12 +23,16 @@ export const PatientsSearch: FunctionComponent<props> = ({
   };
   return (
     <div>
-      <input
-        onChange={(e) => {
-          updateQuery(e.target.value);
-          makeRequest();
-        }}
-      />
+      <label htmlFor="search-user">
+        <input
+          name="search-user"
+          placeholder="Search by name, emp ID"
+          onChange={(e) => {
+            updateQuery(e.target.value);
+            makeRequest();
+          }}
+        />
+      </label>
     </div>
   );
 };
