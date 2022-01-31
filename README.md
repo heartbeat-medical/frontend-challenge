@@ -116,6 +116,6 @@ Added a custom key called ```customId``` to the toast component to render it onl
 
 20. TO RUN THE USEEFFECT PATIENT SEARCH COMPONENT, we can replace the import.
 
-![Screenshot](https://github.com/apoorv173/frtonend/blob/frontend-activity-apoorv/screenshot.png?raw=true)
+![Screenshot](https://github.com/heartbeat-medical/frontend-challenge/blob/f085208f4b967b2eca965ec97e65e57c695c125d/screenshot.png?raw=true)
 
 ### Start: 17:30
