@@ -1,0 +1,71 @@
+.container {
+  position: fixed;
+  display: flex;
+  z-index: 102;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  min-height: 80px;
+  padding: 16px;
+  margin: inherit;
+  max-width: inherit;
+  background: white;
+  box-shadow: rgb(0 0 0 / 12%) 0px 2px 4px 0px;
+  padding-left: 24px;
+  padding-right: 24px;
+  justify-content: space-between;
+}
+
+.logo-section {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.header-logo-link {
+  cursor: pointer;
+  display: inline-flex;
+  padding: 0px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: Heebo, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  display: block;
+  box-sizing: content-box;
+  padding: 12px 0px;
+}
+
+.account-section {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-left: 32px;
+}
+.wrapper {
+  position: relative;
+  width: 48px;
+}
+
+button.button-wrapper {
+  display: flex;
+  width: 54px;
+  height: 54px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  border: none;
+  color: rgb(250, 250, 250);
+  border-radius: 50%;
+  background-color: rgb(172, 172, 172);
+  background-image: none;
+  background-size: cover;
+  outline: none !important;
+  font-weight: 800;
+  cursor: pointer !important;
+  font-size: 16px;
+}

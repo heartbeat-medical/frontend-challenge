@@ -1,0 +1,23 @@
+footer {
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+}
+.container {
+  position: fixed;
+  display: flex;
+  z-index: 102;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  min-height: 80px;
+  padding: 16px;
+  margin: inherit;
+  max-width: inherit;
+  box-shadow: rgb(0 0 0 / 12%) 0px 2px 4px 0px;
+  padding-left: 24px;
+  padding-right: 24px;
+  justify-content: space-between;
+}
