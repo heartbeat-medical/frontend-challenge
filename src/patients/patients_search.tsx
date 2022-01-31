@@ -1,17 +1,19 @@
 import { FunctionComponent, useState } from "react";
 import { Patient, PatientSearchQuery } from "./patients";
 import Loader from "../loader/loader";
+import { ToastBox } from "../toast/toast";
 
 type props = {
   loadPatients: (query: PatientSearchQuery) => Promise<Patient[]>;
   onResults: (ps: Patient[]) => void;
 };
 
-export const PatientsSearch: FunctionComponent<props> = ({
+const PatientsSearch: FunctionComponent<props> = ({
   loadPatients,
   onResults,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const makeRequest = (inputValue: string) => {
     setIsLoading(true);
@@ -24,9 +26,11 @@ export const PatientsSearch: FunctionComponent<props> = ({
       .then((ps) => {
         setIsLoading(false);
         onResults(ps);
+        setError("");
       })
       .catch((err) => {
         setIsLoading(false);
+        setError(err);
       });
   };
   return (
@@ -39,6 +43,15 @@ export const PatientsSearch: FunctionComponent<props> = ({
         />
       </label>
       <Loader isLoading={isLoading} />
+      {error && (
+        <ToastBox
+          title="An error occurred"
+          message={error}
+          status="error"
+        />
+      )}
     </div>
   );
 };
+
+export default PatientsSearch;

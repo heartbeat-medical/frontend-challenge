@@ -78,10 +78,18 @@ See [LICENSE](LICENSE) file.
 3. I saw that there was no label attached to the input, so first added a label and htmlFor to make it semantically correct.
 4. Then added a test case which just adds a snapshot for the patient search component.
 5. Removed the unused type ```psearchboxprops``` from the patient_search file.
-
 6. Made the component default export, for single export in the file, I would prefer a default export.
 7. Fixed the problem with the patient_search component by removing the useState.
 Or I can add useEffect to the component, DEPENDS ON THE REQUIREMENTS
 8. Now I am trying to add a loader, I didn't go with a custom loader or from a library, as I think CSS can generally take care of the most general loaders, and for those special cases we can use a gif or else depends on the use case....
 9. Copied the CSS for the loader for the ```heart design```, and scaled it to double to make it more prominent on the screen.
+✅ I wanted to add something cool which matches heartbeat so found a heart loader out....
+and while adding the loader learned a new thing about animation...
+
+```bash
+animation-timing-function: ease, cubic-bezier(0.215, 0.61, 0.355, 1), step-start, cubic-bezier(0.215, 0.61, 0.355, 1);
+```
 10. Also increased the timeout to the API calls to make the Loader show for longer.
+11. Changed the export to default for all components.
+12. Added new toasts for errors, reason to use ```react-toastify``` is, its highly customizable, and the challenge mentioned the word toast, which led me to this library.Also, the prop items which were already there were sufficient enough to handle our major use case....
+Added 2 new params to the toast component, we don't need those values, just adding to show the more directly configurable option based on the status prop value we r getting.

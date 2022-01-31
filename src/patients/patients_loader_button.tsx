@@ -6,7 +6,7 @@ type props = {
   onLoaded: (ps: Patient[]) => void;
 };
 
-export const PatientsLoader: FunctionComponent<props> = ({
+const PatientsLoader: FunctionComponent<props> = ({
   loadPatients,
   onLoaded,
 }) => {
@@ -21,3 +21,5 @@ export const PatientsLoader: FunctionComponent<props> = ({
     </div>
   );
 };
+
+export default PatientsLoader;

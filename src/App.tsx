@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import { Patient, PatientsService } from "./patients/patients";
 import { createNewPatientsApi } from "./patients/patients_api";
-import { PatientsLoader } from "./patients/patients_loader_button";
-import { PatientsSearch } from "./patients/patients_search";
-import { ToastBox } from "./toast/toast";
+import PatientsLoader from "./patients/patients_loader_button";
+import PatientsSearch from "./patients/patients_search";
 
 function App() {
   const [patients, updatePatients] = useState<Patient[]>([]);
@@ -36,11 +35,6 @@ function App() {
           />
           {patients.length > 0 && displayPatients(patients)}
         </div>
-        <ToastBox
-          title="An error occurred"
-          message="There was an error loading your results"
-          status="success"
-        />
       </header>
     </div>
   );
