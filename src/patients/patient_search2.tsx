@@ -1,6 +1,7 @@
 import { FunctionComponent, useState, useEffect } from "react";
 import { Patient, PatientSearchQuery } from "./patients";
 import Loader from "../loader/loader";
+import "./patients.css";
 import { ToastBox } from "../toast/toast";
 
 type props = {
