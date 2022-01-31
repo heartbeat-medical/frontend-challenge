@@ -61,3 +61,14 @@ We would like a nice "toast" component to show to the user when an error is enco
 ## License
 
 See [LICENSE](LICENSE) file.
+
+#
+#
+## Challenge Notes
+#
+### Considering this challenge as a pair programming activity
+### I am taking notes down for all my changes
+#
+
+Timeboxing the activity to 2 hours
+Start: 15:30
