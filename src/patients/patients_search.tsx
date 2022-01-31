@@ -52,8 +52,7 @@ const PatientsSearch: FC<props> = ({ loadPatients, onResults }) => {
       <Loader isLoading={isLoading} />
       {error && (
         <ToastBox
-          title="An error occurred"
-          message="There was an error loading your results"
+          title={error && error.toString()}
           status="error"
         />
       )}
