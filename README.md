@@ -97,7 +97,7 @@ copied the color from [Heatbeat homepage](https://heartbeat-med.com/#kfjt7ps3uyi
 
 10. Also increased the timeout to the API calls to make the Loader show for longer.
 11. Changed the export to default for all components.
-12. Added new toasts for errors, reason to use ```react-toastify``` is, its highly customizable, and the challenge mentioned the word toast, which led me to this library.Also, the prop items which were already there were sufficient enough to handle our major use case....
+12. Added new toasts for errors, reason to use ```react-toastify``` is, its highly customizable, and the challenge mentioned the word toast, which led me to this library. Also, the prop items which were already there were sufficient enough to handle our major use case....
 Added 2 new params to the toast component, we don't need those values, just adding to show the more directly configurable option based on the status prop value we r getting.
 Added a custom key called ```customId``` to the toast component to render it only once.
 13. Adding the change test case was a bit of a problem, as I was getting an error on ```.then is undefined``` on the load method, but figured it out now, that it was because I forgot to set the mocks on every test render, but after that it worked.
@@ -119,3 +119,8 @@ Added a custom key called ```customId``` to the toast component to render it onl
 ![Screenshot](https://github.com/heartbeat-medical/frontend-challenge/blob/f085208f4b967b2eca965ec97e65e57c695c125d/screenshot.png?raw=true)
 
 ### Start: 17:30
+
+21. Restructured the code a little, moved all the components to a component folder.
+22. Content box design moved to a different component.
+23. List moved to a different component from App.
+24. Key for the list set as ehrId, as it should not be based on the index.

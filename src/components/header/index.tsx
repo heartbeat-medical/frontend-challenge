@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react";
 import "./header.css";
-import logo from './logo.svg';
+import logo from "./logo.svg";
 
-const Logo = () => <img src={logo} alt="logo"/>;
+const Logo = () => <img src={logo} alt="logo" />;
 
 const Header: FunctionComponent = () => {
   return (

@@ -8,10 +8,7 @@ type props = {
 };
 const customId = "error-toast";
 
-export const ToastBox: FunctionComponent<props> = ({
-  title,
-  status,
-}) => {
+const ToastBox: FunctionComponent<props> = ({ title, status }) => {
   const toastFn = status === "error" ? toast.error : toast.success;
   toastFn(title, { type: status, toastId: customId });
   return (
@@ -20,3 +17,5 @@ export const ToastBox: FunctionComponent<props> = ({
     </div>
   );
 };
+
+export default ToastBox;

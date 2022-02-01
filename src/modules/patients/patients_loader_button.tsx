@@ -1,7 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { Patient } from "./patients";
-import Loader from "../loader/loader";
-import { ToastBox } from "../toast/toast";
+import { ToastBox, Loader } from "../../components";
 import "./patients.css";
 
 type props = {
@@ -38,12 +37,7 @@ const PatientsLoader: FunctionComponent<props> = ({
           </button>
         </div>
         <Loader isLoading={isLoading} />
-        {error && (
-          <ToastBox
-            title={error && error.toString()}
-            status="error"
-          />
-        )}
+        {error && <ToastBox title={error && error.toString()} status="error" />}
       </div>
     </div>
   );

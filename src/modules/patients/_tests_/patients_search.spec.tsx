@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor, cleanup } from "../../test-utils";
+import { fireEvent, render, waitFor, cleanup } from "../../../utils/test-utils";
 import PatientsSearch from "../patients_search";
 
 describe("Patient Search test case", () => {

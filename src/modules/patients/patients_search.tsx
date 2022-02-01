@@ -1,8 +1,7 @@
 import { FunctionComponent as FC, useState } from "react";
 import { Patient, PatientSearchQuery } from "./patients";
-import Loader from "../loader/loader";
+import { ToastBox, Loader } from "../../components";
 import "./patients.css";
-import { ToastBox } from "../toast/toast";
 
 type props = {
   loadPatients: (query: PatientSearchQuery) => Promise<Patient[]>;
@@ -31,32 +30,19 @@ const PatientsSearch: FC<props> = ({ loadPatients, onResults }) => {
       });
   };
   return (
-    <div className="site-content">
-      <div className="site-heading">
-        <h1>Welcome to Heartbeat 🏥</h1>
-        <h3>Please load the patients using the button below or search</h3>
-      </div>
-      <div className="site-box">
-        <div className="site-input-box">
-          <form>
-            <label htmlFor="search-user">
-              <input
-                name="search-user"
-                placeholder="Search by name, emp ID"
-                onChange={(e) => makeRequest(e.target.value)}
-              />
-            </label>
-          </form>
-        </div>
-      </div>
+    <>
+      <form>
+        <label htmlFor="search-user">
+          <input
+            name="search-user"
+            placeholder="Search by name, emp ID"
+            onChange={(e) => makeRequest(e.target.value)}
+          />
+        </label>
+      </form>
       <Loader isLoading={isLoading} />
-      {error && (
-        <ToastBox
-          title={error && error.toString()}
-          status="error"
-        />
-      )}
-    </div>
+      {error && <ToastBox title={error && error.toString()} status="error" />}
+    </>
   );
 };
 
