@@ -1,0 +1,46 @@
+import { FunctionComponent, useState } from "react";
+import { Patient } from "./patients";
+import { ToastBox, Loader } from "../../components";
+import "./patients.css";
+
+type props = {
+  loadPatients: () => Promise<Patient[]>;
+  onLoaded: (ps: Patient[]) => void;
+};
+
+const PatientsLoader: FunctionComponent<props> = ({
+  loadPatients,
+  onLoaded,
+}) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const makeRequest = () => {
+    setIsLoading(true);
+    loadPatients()
+      .then((ps) => {
+        setIsLoading(false);
+        setError("");
+        onLoaded(ps);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err);
+      });
+  };
+  return (
+    <div className="site-content">
+      <div className="site-box">
+        <div className="site-input-box">
+          <button onClick={makeRequest} className="search-submit">
+            Load all patients
+          </button>
+        </div>
+        <Loader isLoading={isLoading} />
+        {error && <ToastBox title={error && error.toString()} status="error" />}
+      </div>
+    </div>
+  );
+};
+
+export default PatientsLoader;

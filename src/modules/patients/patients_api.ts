@@ -1,4 +1,4 @@
-import { sleep } from "../utils/sleep";
+import { sleep } from "../../utils/sleep";
 import {
   isPatients,
   PatientsService,
@@ -16,7 +16,7 @@ export function createNewPatientsApi(baseUrl: string): PatientsService {
         }
 
         // Block for 1s
-        await sleep(1000);
+        await sleep(3000);
 
         fetch(baseUrl + `/data/patients.json`)
           .then((response) => response.json())
@@ -32,7 +32,7 @@ export function createNewPatientsApi(baseUrl: string): PatientsService {
     Get: (id: string) => {
       return new Promise<Patient>(async (resolve, reject) => {
         // Block for 1s
-        await sleep(1000);
+        await sleep(3000);
 
         fetch(baseUrl + `/data/patients.json`)
           .then((response) => response.json())
@@ -58,7 +58,7 @@ export function createNewPatientsApi(baseUrl: string): PatientsService {
           resolve([]);
         }
         // Block for 1s
-        await sleep(1000);
+        await sleep(3000);
         fetch(baseUrl + `/data/patients.json`)
           .then((response) => response.json())
           .then((json) => {
