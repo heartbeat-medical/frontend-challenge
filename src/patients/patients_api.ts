@@ -82,20 +82,20 @@ function patientMatchesQuery(
   query: PatientSearchQuery,
   patient: Patient
 ): boolean {
-  if (
-    query.ehrID &&
-    patient.ehrID.toLowerCase().includes(query.ehrID.toLowerCase())
-  ) {
-    return true;
-  }
+  // if (
+  //   query.ehrID &&
+  //   patient.ehrID.toLowerCase().includes(query.ehrID.toLowerCase())
+  // ) {
+  //   return true;
+  // }
   if (
     query.name &&
     patient.name.toLowerCase().includes(query.name.toLowerCase())
   ) {
     return true;
   }
-  if (query.id && patient.id.toLowerCase().includes(query.id.toLowerCase())) {
-    return true;
-  }
+  // if (query.id && patient.id.toLowerCase().includes(query.id.toLowerCase())) {
+  //   return true;
+  // }
   return false;
 }
