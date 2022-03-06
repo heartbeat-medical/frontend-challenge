@@ -24,7 +24,7 @@ export function isPatients(ps: unknown): ps is Patient[] {
   if (!Array.isArray(ps)) {
     return false;
   }
-  return ps.map(isPatient).length === ps.length;
+  return ps.filter(isPatient).length === ps.length;
 }
 // isPatients, type predicate to check an unknown is
 // a Patient

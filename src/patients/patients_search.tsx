@@ -1,38 +1,44 @@
-import { FunctionComponent, useState } from "react";
-import { Patient, PatientSearchQuery } from "./patients";
+import { FunctionComponent, useReducer } from "react";
 
 type props = {
-  loadPatients: (query: PatientSearchQuery) => Promise<Patient[]>;
-  onResults: (ps: Patient[]) => void;
+  updateQuery: (data: {[key:string]:string}) => void;
 };
 
+const queryReducer = (state: { queryKey: string, query: string }, action: {type:string, payload: string}) => { 
+  const { type, payload } = action;
+  switch (type) { 
+    case 'queryKey':
+      return { ...state, queryKey: payload };
+    case 'query':
+      return { ...state, query: payload };
+    default: { 
+      return state
+    }
+  }
+}
+
 export const PatientsSearch: FunctionComponent<props> = ({
-  loadPatients,
-  onResults,
+  updateQuery
 }) => {
-  const [query, updateQuery] = useState("");
-  const makeRequest = () => {
-    const sq: PatientSearchQuery = {
-      name: query,
-      ehrID: query,
-      id: query,
-    };
-    loadPatients(sq)
-      .then((ps) => onResults(ps))
-      .catch((err) => alert(err));
-  };
+  const [state, dispatch] = useReducer(queryReducer, { query: '', queryKey: 'id' })
+  
   return (
     <div>
+      <select value={state.queryKey} onChange={event => {
+        dispatch({ type: 'queryKey', payload: event.target.value });
+        updateQuery({ [event.target.value]: state.query });
+      }}>
+        {['id', 'ehrID', 'name'].map((queryKey) =>
+          <option key={queryKey} value={queryKey}>{queryKey}</option>
+        )}
+      </select>
       <input
         onChange={(e) => {
-          updateQuery(e.target.value);
-          makeRequest();
+          dispatch({ type: 'query', payload: e.target.value });
+          updateQuery({ [state.queryKey]: e.target.value });
         }}
       />
     </div>
   );
 };
 
-type psearchboxprops = {
-  onQueryChange: (query: PatientSearchQuery) => void;
-};

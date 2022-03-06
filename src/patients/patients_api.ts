@@ -4,7 +4,7 @@ import {
   PatientsService,
   Patient,
   PatientSearchQuery,
-} from "./patients";
+} from "./patientsService";
 
 export function createNewPatientsApi(baseUrl: string): PatientsService {
   return {
