@@ -4,6 +4,7 @@ import { Patient, PatientsService } from "./patients/patients";
 import { createNewPatientsApi } from "./patients/patients_api";
 import { PatientsLoader } from "./patients/patients_loader_button";
 import { PatientsSearch } from "./patients/patients_search";
+import ToastProvider from "./toast/ToastProvider";
 
 function App() {
   const [patients, updatePatients] = useState<Patient[]>([]);
@@ -14,28 +15,33 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Heartbeat 🏥</h1>
-        <div
-          style={{
-            border: "1px solid white",
-            borderRadius: "8px",
-            padding: "20px",
-            marginBottom: "20px",
-          }}
-        >
-          <h2>Please load the patients using the button below or search</h2>
-          <PatientsLoader
-            loadPatients={patientsApi.All}
-            onLoaded={updatePatients}
-          />
-          <PatientsSearch
-            loadPatients={patientsApi.Search}
-            onResults={updatePatients}
-          />
-          {patients.length > 0 && displayPatients(patients)}
-        </div>
-      </header>
+      <ToastProvider>
+        <header className="App-header">
+          <h1>Welcome to Heartbeat 🏥</h1>
+          <div
+            style={{
+              border: "1px solid white",
+              borderRadius: "8px",
+              padding: "20px",
+              marginBottom: "20px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <h2>Please load the patients using the button below or search</h2>
+            <PatientsLoader
+              loadPatients={patientsApi.All}
+              onLoaded={updatePatients}
+            />
+            <PatientsSearch
+              loadPatients={patientsApi.Search}
+              onResults={updatePatients}
+            />
+            {patients.length > 0 && displayPatients(patients)}
+          </div>
+        </header>
+      </ToastProvider>
     </div>
   );
 }
@@ -44,7 +50,7 @@ export default App;
 
 function displayPatients(patients: Patient[]) {
   return (
-    <ul>
+    <ul style={{ paddingLeft: "5px" }}>
       {patients.map((p, k) => (
         <li style={{ listStyle: "none" }} key={k}>
           ✅ {p.name}{" "}
