@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { Patient, PatientSearchQuery } from "./patients";
-import * as lodash from "lodash";
+import { debounce } from "lodash";
 import { useToast } from "../toast/ToastProvider";
 
 type props = {
@@ -45,7 +45,7 @@ export const PatientsSearch: FunctionComponent<props> = ({
     setQuery(e.target.value);
   };
 
-  const debouncedHandler = lodash.debounce(changeHandler, 300);
+  const debouncedHandler = debounce(changeHandler, 300);
 
   return (
     <div>
