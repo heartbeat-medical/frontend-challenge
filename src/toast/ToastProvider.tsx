@@ -3,8 +3,8 @@ import { ToastProps } from "./toast";
 import ToastContainer from "./ToastContainer";
 
 const ToastContext = React.createContext({
-  addToast: ({ title, message, status }: any) => {},
-  removeToast: (id: any) => {},
+  addToast: ({ title, message, status }: Omit<ToastProps, "id">) => {},
+  removeToast: (id: number) => {},
 });
 
 let id = 1;
