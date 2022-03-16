@@ -1,22 +1,16 @@
 import { FunctionComponent } from "react";
 import { useToast } from "../toast/ToastProvider";
-import { Patient } from "./patients";
+import { usePatientsProvider } from "./PatientsProvider";
 
-type props = {
-  loadPatients: () => Promise<Patient[]>;
-  onLoaded: (ps: Patient[]) => void;
-};
-
-export const PatientsLoader: FunctionComponent<props> = ({
-  loadPatients,
-  onLoaded,
-}) => {
+export const PatientsLoader: FunctionComponent = () => {
   const { addToast } = useToast();
+  const { patientsApi, updatePatients } = usePatientsProvider();
 
   const makeRequest = () => {
-    loadPatients()
+    patientsApi
+      .All()
       .then((ps) => {
-        onLoaded(ps);
+        updatePatients(ps);
         addToast({
           title: "Successfully loaded all patients",
           status: "success",

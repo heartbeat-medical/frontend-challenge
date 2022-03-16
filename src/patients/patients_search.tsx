@@ -2,19 +2,13 @@ import { FunctionComponent, useEffect, useState } from "react";
 import { Patient, PatientSearchQuery } from "./patients";
 import { debounce } from "lodash";
 import { useToast } from "../toast/ToastProvider";
+import { usePatientsProvider } from "./PatientsProvider";
 
-type props = {
-  loadPatients: (query: PatientSearchQuery) => Promise<Patient[]>;
-  onResults: (ps: Patient[]) => void;
-};
-
-export const PatientsSearch: FunctionComponent<props> = ({
-  loadPatients,
-  onResults,
-}) => {
+export const PatientsSearch: FunctionComponent = () => {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
+  const { patientsApi, updatePatients } = usePatientsProvider();
 
   useEffect(() => {
     makeRequest();
@@ -26,9 +20,10 @@ export const PatientsSearch: FunctionComponent<props> = ({
       name: query,
     };
 
-    loadPatients(sq)
+    patientsApi
+      .Search(sq)
       .then((ps) => {
-        onResults(ps);
+        updatePatients(ps);
         setLoading(false);
       })
       .catch((err) => {
