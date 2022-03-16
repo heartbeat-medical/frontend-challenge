@@ -1,6 +1,6 @@
 import { ToastBox, ToastProps } from "./toast";
 
-export default function ToastContainer({ toasts }: { toasts: ToastProps[] }) {
+export const ToastContainer = ({ toasts }: { toasts: ToastProps[] }) => {
   return (
     <>
       {toasts &&
@@ -15,4 +15,4 @@ export default function ToastContainer({ toasts }: { toasts: ToastProps[] }) {
         ))}
     </>
   );
-}
+};

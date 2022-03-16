@@ -1,6 +1,6 @@
 import React, { useState, useContext, useCallback } from "react";
 import { ToastProps } from "./toast";
-import ToastContainer from "./ToastContainer";
+import { ToastContainer } from "./ToastContainer";
 
 const ToastContext = React.createContext({
   addToast: ({ title, message, status }: Omit<ToastProps, "id">) => {},
