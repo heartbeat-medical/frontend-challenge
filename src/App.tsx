@@ -4,6 +4,7 @@ import { Patient, PatientsService } from "./patients/patients";
 import { createNewPatientsApi } from "./patients/patients_api";
 import { PatientsLoader } from "./patients/patients_loader_button";
 import { PatientsSearch } from "./patients/patients_search";
+import ToastContainer from "./components/toast/toast_container";
 
 function App() {
   const [patients, updatePatients] = useState<Patient[]>([]);
@@ -13,43 +14,46 @@ function App() {
   );
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Heartbeat 🏥</h1>
-        <div
-          style={{
-            border: "1px solid white",
-            borderRadius: "8px",
-            padding: "20px",
-            marginBottom: "20px",
-          }}
-        >
-          <h2>Please load the patients using the button below or search</h2>
-          <PatientsLoader
-            loadPatients={patientsApi.All}
-            onLoaded={updatePatients}
-          />
-          <PatientsSearch
-            loadPatients={patientsApi.Search}
-            onResults={updatePatients}
-          />
-          {patients.length > 0 && displayPatients(patients)}
-        </div>
-      </header>
-    </div>
+    <>
+      <div className="App">
+        <header className="App-header">
+          <h1>Welcome to Heartbeat 🏥</h1>
+          <div
+            style={{
+              border: "1px solid white",
+              borderRadius: "8px",
+              padding: "20px",
+              marginBottom: "20px",
+            }}
+          >
+            <h2>Please load the patients using the button below or search</h2>
+
+            <PatientsLoader
+              loadPatients={patientsApi.All}
+              onLoaded={updatePatients}
+            />
+            <PatientsSearch
+              loadPatients={patientsApi.Search}
+              onResults={updatePatients}
+            />
+            <DisplayPatients patients={patients} />
+          </div>
+        </header>
+      </div>
+      <ToastContainer />
+    </>
   );
 }
 
 export default App;
 
-function displayPatients(patients: Patient[]) {
+type props = { patients: Patient[] };
+export const DisplayPatients = ({ patients }: props) => {
   return (
-    <ul>
-      {patients.map((p, k) => (
-        <li style={{ listStyle: "none" }} key={k}>
-          ✅ {p.name}{" "}
-        </li>
+    <div data-testid="patient">
+      {(patients || []).map((p, k) => (
+        <p key={k}>✅ {p.name} </p>
       ))}
-    </ul>
+    </div>
   );
-}
+};
