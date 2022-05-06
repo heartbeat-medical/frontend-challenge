@@ -1,34 +1,51 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { Patient, PatientSearchQuery } from "./patients";
+import { debounce } from "lodash";
+import { useToast } from "../toast/ToastProvider";
+import { usePatientsProvider } from "./PatientsProvider";
 
-type props = {
-  loadPatients: (query: PatientSearchQuery) => Promise<Patient[]>;
-  onResults: (ps: Patient[]) => void;
-};
+export const PatientsSearch: FunctionComponent = () => {
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { addToast } = useToast();
+  const { patientsApi, updatePatients } = usePatientsProvider();
 
-export const PatientsSearch: FunctionComponent<props> = ({
-  loadPatients,
-  onResults,
-}) => {
-  const [query, updateQuery] = useState("");
+  useEffect(() => {
+    makeRequest();
+  }, [query]);
+
   const makeRequest = () => {
+    setLoading(true);
     const sq: PatientSearchQuery = {
       name: query,
-      ehrID: query,
-      id: query,
     };
-    loadPatients(sq)
-      .then((ps) => onResults(ps))
-      .catch((err) => alert(err));
+
+    patientsApi
+      .Search(sq)
+      .then((ps) => {
+        updatePatients(ps);
+        setLoading(false);
+      })
+      .catch((err) => {
+        addToast({
+          title: "Error searching patients",
+          message: err,
+          status: "error",
+        });
+        setLoading(false);
+      });
   };
+
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
+  const debouncedHandler = debounce(changeHandler, 300);
+
   return (
     <div>
-      <input
-        onChange={(e) => {
-          updateQuery(e.target.value);
-          makeRequest();
-        }}
-      />
+      <input onChange={debouncedHandler} aria-label="search-input" />
+      {loading && <div>Loading...</div>}
     </div>
   );
 };
