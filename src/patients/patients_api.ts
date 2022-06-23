@@ -13,11 +13,13 @@ export function createNewPatientsApi(baseUrl: string): PatientsService {
         // Block for 1s
         await sleep(1000);
         
+        // Network error should be returned by the fetch
         // Random flakiness
-        if (Math.random() <= 0.5) {
-          reject("a network error occurred");
-          return;
-        }        
+        // if (Math.random() <= 0.5) {
+        //   reject("a network error occurred");
+        //   return;
+        // }
+
 
         fetch(baseUrl + `/data/patients.json`)
           .then((response) => response.json())
