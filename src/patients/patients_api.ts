@@ -6,6 +6,13 @@ import {
   PatientSearchQuery,
 } from "./patients";
 
+/**
+ * This fake API is used to simulate an actual backend for the purpose of this
+ * code challenge. 
+ * 
+ * The solution of the challenge doesn't require changes to this file!
+ */
+
 export function createNewPatientsApi(baseUrl: string): PatientsService {
   return {
     All: () => {

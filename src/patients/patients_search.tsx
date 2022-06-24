@@ -1,5 +1,5 @@
-import { FunctionComponent, useState } from "react";
-import { Patient, PatientSearchQuery } from "./patients";
+import { FunctionComponent, useState } from 'react';
+import { Patient, PatientSearchQuery } from './patients';
 
 type props = {
   loadPatients: (query: PatientSearchQuery) => Promise<Patient[]>;
@@ -10,7 +10,7 @@ export const PatientsSearch: FunctionComponent<props> = ({
   loadPatients,
   onResults,
 }) => {
-  const [query, updateQuery] = useState("");
+  const [query, updateQuery] = useState('');
   const makeRequest = () => {
     const sq: PatientSearchQuery = {
       name: query,
@@ -31,8 +31,4 @@ export const PatientsSearch: FunctionComponent<props> = ({
       />
     </div>
   );
-};
-
-type psearchboxprops = {
-  onQueryChange: (query: PatientSearchQuery) => void;
 };
