@@ -1,5 +1,5 @@
-import { FunctionComponent } from "react";
-import { Patient } from "./patients";
+import { FunctionComponent } from 'react';
+import { Patient } from './patients';
 
 type props = {
   loadPatients: () => Promise<Patient[]>;

@@ -33,7 +33,7 @@ Now that we have a useful test for this component: Please refactor this componen
 
 ### 1.3 Add a feature
 
-Add a loading spinner (feel free to use anything) to provide the user with some visual feedback while the code is waiting for a network request to complete.
+Add a loading spinner to provide the user with some visual feedback while the code is waiting for a network request to complete.
 
 ## Task 2 
 
