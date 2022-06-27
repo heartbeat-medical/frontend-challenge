@@ -1,5 +1,6 @@
 import { FunctionComponent, useState, useEffect } from "react";
 import { Patient, PatientSearchQuery } from "./patients";
+import { Loading } from "../loading/loading";
 
 type props = {
   loadPatients: (query: PatientSearchQuery) => Promise<Patient[]>;
@@ -11,20 +12,25 @@ export const PatientsSearch: FunctionComponent<props> = ({
   onResults,
 }) => {
   const [query, updateQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const makeRequest = () => {
+      setIsLoading(true);
       const sq: PatientSearchQuery = {
         name: query,
         ehrID: query,
         id: query,
       };
-      if(sq) {
-        loadPatients(sq)
-        .then((ps) => onResults(ps))
-        .catch((err) => alert(err));
-      }
-
+      
+      loadPatients(sq)
+        .then((ps) => {
+          onResults(ps);
+        })
+        .catch((err) => alert(err))
+        .finally(() => {
+          setIsLoading(false);
+        })
     };
 
     makeRequest();
@@ -37,6 +43,7 @@ export const PatientsSearch: FunctionComponent<props> = ({
 
   return (
     <div>
+      {isLoading && <Loading />}
       <input
         onChange={handleChange}
       />

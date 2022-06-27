@@ -3,6 +3,13 @@
 exports[`<PatientsSearch /> renders correctly 1`] = `
 <div>
   <div>
+    <div
+      class="loading-container"
+    >
+      <div
+        class="loading-spinner"
+      />
+    </div>
     <input />
   </div>
 </div>

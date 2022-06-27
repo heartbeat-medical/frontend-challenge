@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { PatientsLoader } from "../patients/patients_loader_button";
-import { PatientsSearch } from "../patients/patients_search";
-import { PatientsList } from "../patients/patients_list";
-import { Patient, PatientsService } from "../patients/patients";
-import { createNewPatientsApi } from "../patients/patients_api";
+import { PatientsLoader } from "../components/patients/patients_loader_button";
+import { PatientsSearch } from "../components/patients/patients_search";
+import { PatientsList } from "../components/patients/patients_list";
+import { Patient, PatientsService } from "../components/patients/patients";
+import { createNewPatientsApi } from "../components/patients/patients_api";
 
 export const PatientsPage = () => {
   const [patients, updatePatients] = useState<Patient[]>([]);

@@ -1,6 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import { PatientsSearch } from './patients_search';
 import userEvent from '@testing-library/user-event'
+import { act } from 'react-dom/test-utils';
 
 describe('<PatientsSearch />', () => {
   it('renders correctly', () => {
@@ -28,10 +29,14 @@ describe('<PatientsSearch />', () => {
       />
     );
     const input = await screen.findByRole('textbox') as HTMLInputElement;
-    userEvent.type(input, 'Andre{enter}')
-    expect(input).toHaveFocus()
-    expect(input).toHaveValue('Andre')
-    expect(mockLoadPatients).toHaveBeenCalled()
+    
+    act(() => {
+      userEvent.type(input, 'Andre{enter}');
+    });
+
+    expect(input).toHaveFocus();
+    expect(input).toHaveValue('Andre');
+    expect(mockLoadPatients).toHaveBeenCalled();
   });
 
   it('shows an alert when there is an error', async () => {
@@ -48,7 +53,10 @@ describe('<PatientsSearch />', () => {
     );
 
     const input = await screen.findByRole('textbox') as HTMLInputElement;
-    await userEvent.type(input, 'Andre{enter}')
+    
+    act(async () => {
+      await userEvent.type(input, 'Andre{enter}');
+    });
 
     expect(alertMessage).toHaveBeenCalled();
   });
