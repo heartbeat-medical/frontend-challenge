@@ -4,6 +4,7 @@ import { Patient, PatientsService } from "./patients/patients";
 import { createNewPatientsApi } from "./patients/patients_api";
 import { PatientsLoader } from "./patients/patients_loader_button";
 import { PatientsSearch } from "./patients/patients_search";
+import { PatientsList } from "./patients/patients_list";
 
 function App() {
   const [patients, updatePatients] = useState<Patient[]>([]);
@@ -33,7 +34,9 @@ function App() {
             loadPatients={patientsApi.Search}
             onResults={updatePatients}
           />
-          {patients.length > 0 && displayPatients(patients)}
+          <PatientsList
+            patients={patients}
+          />
         </div>
       </header>
     </div>
@@ -41,15 +44,3 @@ function App() {
 }
 
 export default App;
-
-function displayPatients(patients: Patient[]) {
-  return (
-    <ul>
-      {patients.map((p, k) => (
-        <li style={{ listStyle: "none" }} key={k}>
-          ✅ {p.name}{" "}
-        </li>
-      ))}
-    </ul>
-  );
-}
