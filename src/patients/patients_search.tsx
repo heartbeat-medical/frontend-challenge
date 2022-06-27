@@ -21,13 +21,16 @@ export const PatientsSearch: FunctionComponent<props> = ({
       .then((ps) => onResults(ps))
       .catch((err) => alert(err));
   };
+
+  const handleChange = (e: any) => {
+    updateQuery(e.target.value);
+    makeRequest();
+  }
+
   return (
     <div>
       <input
-        onChange={(e) => {
-          updateQuery(e.target.value);
-          makeRequest();
-        }}
+        onChange={handleChange}
       />
     </div>
   );

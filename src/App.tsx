@@ -1,17 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import { Patient, PatientsService } from "./patients/patients";
-import { createNewPatientsApi } from "./patients/patients_api";
-import { PatientsLoader } from "./patients/patients_loader_button";
-import { PatientsSearch } from "./patients/patients_search";
-import { PatientsList } from "./patients/patients_list";
+import { PatientsPage } from "./pages/patients_page";
+
 
 function App() {
-  const [patients, updatePatients] = useState<Patient[]>([]);
-
-  const [patientsApi] = useState<PatientsService>(
-    createNewPatientsApi("http://localhost:3000")
-  );
 
   return (
     <div className="App">
@@ -25,18 +17,7 @@ function App() {
             marginBottom: "20px",
           }}
         >
-          <h2>Please load the patients using the button below or search</h2>
-          <PatientsLoader
-            loadPatients={patientsApi.All}
-            onLoaded={updatePatients}
-          />
-          <PatientsSearch
-            loadPatients={patientsApi.Search}
-            onResults={updatePatients}
-          />
-          <PatientsList
-            patients={patients}
-          />
+          <PatientsPage />
         </div>
       </header>
     </div>
