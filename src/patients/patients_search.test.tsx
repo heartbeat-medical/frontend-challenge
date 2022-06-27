@@ -13,7 +13,8 @@ describe('<PatientsSearch />', () => {
         onResults={onResultsStub} 
       />
     )
-    expect(container).toMatchSnapshot()
+
+    expect(container).toMatchSnapshot();
   });
 
   it('searches for patients', async () => {
@@ -31,5 +32,24 @@ describe('<PatientsSearch />', () => {
     expect(input).toHaveFocus()
     expect(input).toHaveValue('Andre')
     expect(mockLoadPatients).toHaveBeenCalled()
+  });
+
+  it('shows an alert when there is an error', async () => {
+    const stubOnResult = jest.fn().mockResolvedValue([]);
+    const stubLoadPatients = jest.fn().mockRejectedValue(new Error("invalid response from server"));
+    window.alert = jest.fn(() => ({})); 
+    const alertMessage = jest.spyOn(window, 'alert');
+
+    render(
+      <PatientsSearch
+        loadPatients={stubLoadPatients}
+        onResults={stubOnResult}
+      />
+    );
+
+    const input = await screen.findByRole('textbox') as HTMLInputElement;
+    await userEvent.type(input, 'Andre{enter}')
+
+    expect(alertMessage).toHaveBeenCalled();
   });
 });
