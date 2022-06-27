@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event'
 
 describe('<PatientsSearch />', () => {
   it('renders correctly', () => {
-    const loadPatientsStub = jest.fn();
-    const onResultsStub = jest.fn();
+    const loadPatientsStub = jest.fn().mockResolvedValue([]);;
+    const onResultsStub = jest.fn().mockResolvedValue(null);
 
     const { container } = render(
       <PatientsSearch 

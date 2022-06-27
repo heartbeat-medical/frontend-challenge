@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
 import { Patient, PatientSearchQuery } from "./patients";
 
 type props = {
@@ -11,20 +11,28 @@ export const PatientsSearch: FunctionComponent<props> = ({
   onResults,
 }) => {
   const [query, updateQuery] = useState("");
-  const makeRequest = () => {
-    const sq: PatientSearchQuery = {
-      name: query,
-      ehrID: query,
-      id: query,
+
+  useEffect(() => {
+    const makeRequest = () => {
+      const sq: PatientSearchQuery = {
+        name: query,
+        ehrID: query,
+        id: query,
+      };
+      if(sq) {
+        loadPatients(sq)
+        .then((ps) => onResults(ps))
+        .catch((err) => alert(err));
+      }
+
     };
-    loadPatients(sq)
-      .then((ps) => onResults(ps))
-      .catch((err) => alert(err));
-  };
+
+    makeRequest();
+  }, [query, loadPatients, onResults])
+
 
   const handleChange = (e: any) => {
     updateQuery(e.target.value);
-    makeRequest();
   }
 
   return (
