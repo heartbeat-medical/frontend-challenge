@@ -9,7 +9,7 @@
 2. There are no right or wrong answers. Most likely you won't have time to finish all the tasks. We are looking for:
 
    1. Code quality ✅
-   2. Structure, ,  ✅ 
+   2. Structure ✅ 
    3. Component boundaries ✅
    4. Architectural decisions (e.g. _why have you used this package?_) ✅
 
@@ -18,32 +18,44 @@
 
 ## Task 1
 
-There is a basic search component `patients_search.tsx`. It allows a user to type a query and have the results return to the parent component.
+There is a basic search feature in our app that allows search for patients based on several properties. The implementation of this feature has some problems. We're interested in two of them:
 
-It's a little janky, sometimes it doesn't search for the correct query. The component boundary is confusing also.
+1. There is a bug leading to incorrect results in some cirumstances. One simple way to cause it is typing "J" into the search after refreshing the page. It should show two search results, but nothing is displayed.
+2. The boundaries between the components in the implementation is convoluted.
 
 ### 1.1 Add a test
 
-Add a test for this component. Feel free to use whichever testing library you think is best.
+Add a test for the search, it should cover the bug described above and any other testcases you feel are important. Feel free to use whichever testing library you think is best.
 
-### 1.2 Refactor and add a feature
+### 1.2 Refactor
 
-Now that we have a useful test for this component. Please refactor this component to remove the peculiar behaviour when searching for something. Bonus points for addressing the confusing component boundary.
+Now that we have a useful test for this component: Please refactor this component to remove the problems described above (the search bug as well as the convoluted component boundary).
 
-Add a loading spinner (feel free to use anything) to provide the user with some visual feedback while it is waiting for a network request to complete.
+### 1.3 Add a feature
+
+Add a loading spinner to provide the user with some visual feedback while the code is waiting for a network request to complete.
 
 ## Task 2 
 
-## 2.1 Creating a React hook for a toast component
-
-Error handling is a little old fashioned. Currently the errors are handled in the components and just popped up via an `alert`:
+Error handling in our search is a little old fashioned. Currently the errors are handled in the components and just popped up via an `alert`:
 
 ```
 // patients_search.tsx
 loadPatients(sq).then(ps => onResults(ps)).catch(err => alert(err))
 ```
 
-We would like your to create a reusable "toast" component hook to show to the user when an error is encountered. There is a base component to use for styling in `src/toast/toast.tsx`. **We are not looking for you to use a library here, but rather implement this in React yourself.**
+We want to improve this.
+
+## 2.1 Creating a React hook for a toast component
+
+As our app will have more features that need error handling we want you to create a reusable hook that can be used to show a little "toast" in a corner of the screen with an error or success message.
+
+The features of this hook should include:
+1. The ability to create a new toast
+2. Toasts should disappear after some time automatically
+3. Multiple toasts should not hide each other
+
+There is a base component to use for styling in `src/toast/toast.tsx`. **We are not looking for you to use a toast-library here, but rather implement the high-level functionality in React yourself.**
 
 ## How to submit
 

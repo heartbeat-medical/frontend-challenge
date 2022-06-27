@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import "./App.css";
-import { Patient, PatientsService } from "./patients/patients";
-import { createNewPatientsApi } from "./patients/patients_api";
-import { PatientsLoader } from "./patients/patients_loader_button";
-import { PatientsSearch } from "./patients/patients_search";
+import React, { useState } from 'react';
+import './App.css';
+import { Patient, PatientsService } from './patients/patients';
+import { createNewPatientsApi } from './patients/patients_api';
+import { PatientsLoader } from './patients/patients_loader_button';
+import { PatientsSearch } from './patients/patients_search';
 
 function App() {
   const [patients, updatePatients] = useState<Patient[]>([]);
 
   const [patientsApi] = useState<PatientsService>(
-    createNewPatientsApi("http://localhost:3000")
+    createNewPatientsApi('http://localhost:3000')
   );
 
   return (
@@ -18,10 +18,10 @@ function App() {
         <h1>Welcome to Heartbeat 🏥</h1>
         <div
           style={{
-            border: "1px solid white",
-            borderRadius: "8px",
-            padding: "20px",
-            marginBottom: "20px",
+            border: '1px solid white',
+            borderRadius: '8px',
+            padding: '20px',
+            marginBottom: '20px',
           }}
         >
           <h2>Please load the patients using the button below or search</h2>
@@ -46,8 +46,8 @@ function displayPatients(patients: Patient[]) {
   return (
     <ul>
       {patients.map((p, k) => (
-        <li style={{ listStyle: "none" }} key={k}>
-          ✅ {p.name}{" "}
+        <li style={{ listStyle: 'none' }} key={k}>
+          ✅ {p.name}{' '}
         </li>
       ))}
     </ul>

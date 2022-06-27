@@ -1,10 +1,17 @@
-import { sleep } from "../utils/sleep";
+import { sleep } from '../utils/sleep';
 import {
   isPatients,
   PatientsService,
   Patient,
   PatientSearchQuery,
-} from "./patients";
+} from './patients';
+
+/**
+ * This fake API is used to simulate an actual backend for the purpose of this
+ * code challenge.
+ *
+ * The solution of the challenge doesn't require changes to this file!
+ */
 
 export function createNewPatientsApi(baseUrl: string): PatientsService {
   return {
@@ -12,18 +19,18 @@ export function createNewPatientsApi(baseUrl: string): PatientsService {
       return new Promise<Patient[]>(async (resolve, reject) => {
         // Block for 1s
         await sleep(1000);
-        
+
         // Random flakiness
         if (Math.random() <= 0.5) {
-          reject("a network error occurred");
+          reject('a network error occurred');
           return;
-        }        
+        }
 
         fetch(baseUrl + `/data/patients.json`)
           .then((response) => response.json())
           .then((json) => {
             if (!isPatients(json)) {
-              return reject("invalid response from server");
+              return reject('invalid response from server');
             }
             return resolve(json);
           })
@@ -39,7 +46,7 @@ export function createNewPatientsApi(baseUrl: string): PatientsService {
           .then((response) => response.json())
           .then((json) => {
             if (!isPatients(json)) {
-              return reject("invalid response from server");
+              return reject('invalid response from server');
             }
             const results = json.filter((p) => p.id === id);
             if (results.length < 1) {
@@ -59,12 +66,12 @@ export function createNewPatientsApi(baseUrl: string): PatientsService {
           // An empty query results in no
           // search results
           resolve([]);
-        }        
+        }
         fetch(baseUrl + `/data/patients.json`)
           .then((response) => response.json())
           .then((json) => {
             if (!isPatients(json)) {
-              return reject("invalid response from server");
+              return reject('invalid response from server');
             }
             return resolve(json.filter((p) => patientMatchesQuery(query, p)));
           })
