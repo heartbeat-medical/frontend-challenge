@@ -16,14 +16,18 @@ describe('HeartBeat Basic Flow', () => {
 
     it('loads the patients on button click', () => {
       cy.findByRole('button', { name: /load all patients/i }).click()
+      cy.get('.loading-container').should('exist')
       cy.wait('@getPatients')
       cy.get('ul > li').contains(patients[0].name).should('exist')
       cy.get('ul > li').contains(patients[1].name).should('exist')
+      cy.get('.toast').should('exist');
+      cy.get('.loading-container').should('not.exist')
       cy.get('ul > li').should('have.length', patients.length)
     })
   
     it('searches a patient by name', () => {
       cy.findByRole('textbox').type(patients[0].name)
+      cy.get('.loading-container').should('exist')
       cy.get('ul > li').contains(patients[1].name).should('exist')
       cy.get('ul > li').should('have.length', 1)
     })

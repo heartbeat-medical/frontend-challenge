@@ -1,6 +1,7 @@
 import { FunctionComponent, useState, useEffect } from "react";
 import { Patient, PatientSearchQuery } from "./patients";
 import { Loading } from "../loading/loading";
+import useToastContext from "../../hooks/useToastContext";
 
 type props = {
   loadPatients: (query: PatientSearchQuery) => Promise<Patient[]>;
@@ -13,6 +14,7 @@ export const PatientsSearch: FunctionComponent<props> = ({
 }) => {
   const [query, updateQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { addToast } = useToastContext()
 
   useEffect(() => {
     const makeRequest = () => {
@@ -27,14 +29,20 @@ export const PatientsSearch: FunctionComponent<props> = ({
         .then((ps) => {
           onResults(ps);
         })
-        .catch((err) => alert(err))
+        .catch((err) => {
+          addToast({
+            title: "Error Loading Patients",
+            message: err,
+            status: "error"
+          });
+        })
         .finally(() => {
           setIsLoading(false);
-        })
+        });
     };
 
     makeRequest();
-  }, [query, loadPatients, onResults])
+  }, [query, loadPatients, onResults, addToast])
 
 
   const handleChange = (e: any) => {
@@ -49,8 +57,4 @@ export const PatientsSearch: FunctionComponent<props> = ({
       />
     </div>
   );
-};
-
-type psearchboxprops = {
-  onQueryChange: (query: PatientSearchQuery) => void;
 };
